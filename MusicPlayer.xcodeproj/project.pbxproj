@@ -3,16 +3,20 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B0ED903248D968B0055C5EB /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8B0ED902248D968B0055C5EB /* SDWebImageSwiftUI */; };
 		8B3DC4B92422A2810067355E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3DC4B82422A2810067355E /* AppDelegate.swift */; };
 		8B3DC4BB2422A2810067355E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3DC4BA2422A2810067355E /* SceneDelegate.swift */; };
 		8B3DC4BD2422A2810067355E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3DC4BC2422A2810067355E /* ContentView.swift */; };
 		8B3DC4BF2422A2820067355E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B3DC4BE2422A2820067355E /* Assets.xcassets */; };
 		8B3DC4C22422A2820067355E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B3DC4C12422A2820067355E /* Preview Assets.xcassets */; };
 		8B3DC4C52422A2820067355E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B3DC4C32422A2820067355E /* LaunchScreen.storyboard */; };
+		8B58077424838BE800C6888B /* AppleMusicAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B58077324838BE800C6888B /* AppleMusicAPI.swift */; };
+		8B58077624838D6E00C6888B /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B58077524838D6E00C6888B /* Song.swift */; };
+		8B5807782483991A00C6888B /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5807772483991A00C6888B /* SwiftyJSON.swift */; };
 		8B708D642422FB9700CE1598 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B708D632422FB9700CE1598 /* PlayerView.swift */; };
 		8B708D662423108200CE1598 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B708D652423108200CE1598 /* SearchView.swift */; };
 /* End PBXBuildFile section */
@@ -26,8 +30,12 @@
 		8B3DC4C12422A2820067355E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8B3DC4C42422A2820067355E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8B3DC4C62422A2820067355E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8B58077324838BE800C6888B /* AppleMusicAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicAPI.swift; sourceTree = "<group>"; };
+		8B58077524838D6E00C6888B /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		8B5807772483991A00C6888B /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		8B708D632422FB9700CE1598 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		8B708D652423108200CE1598 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		8BD60D7C2484C286000DC1DF /* MusicPlayer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MusicPlayer.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B0ED903248D968B0055C5EB /* SDWebImageSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,11 +69,15 @@
 		8B3DC4B72422A2810067355E /* MusicPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				8BD60D7C2484C286000DC1DF /* MusicPlayer.entitlements */,
 				8B3DC4B82422A2810067355E /* AppDelegate.swift */,
 				8B3DC4BA2422A2810067355E /* SceneDelegate.swift */,
 				8B3DC4BC2422A2810067355E /* ContentView.swift */,
+				8B58077324838BE800C6888B /* AppleMusicAPI.swift */,
+				8B58077524838D6E00C6888B /* Song.swift */,
 				8B708D632422FB9700CE1598 /* PlayerView.swift */,
 				8B708D652423108200CE1598 /* SearchView.swift */,
+				8B5807772483991A00C6888B /* SwiftyJSON.swift */,
 				8B3DC4BE2422A2820067355E /* Assets.xcassets */,
 				8B3DC4C32422A2820067355E /* LaunchScreen.storyboard */,
 				8B3DC4C62422A2820067355E /* Info.plist */,
@@ -97,6 +110,9 @@
 			dependencies = (
 			);
 			name = MusicPlayer;
+			packageProductDependencies = (
+				8B0ED902248D968B0055C5EB /* SDWebImageSwiftUI */,
+			);
 			productName = MusicPlayer;
 			productReference = 8B3DC4B52422A2810067355E /* MusicPlayer.app */;
 			productType = "com.apple.product-type.application";
@@ -125,6 +141,9 @@
 				Base,
 			);
 			mainGroup = 8B3DC4AC2422A2810067355E;
+			packageReferences = (
+				8B0ED901248D968B0055C5EB /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+			);
 			productRefGroup = 8B3DC4B62422A2810067355E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -152,7 +171,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B58077624838D6E00C6888B /* Song.swift in Sources */,
 				8B708D662423108200CE1598 /* SearchView.swift in Sources */,
+				8B58077424838BE800C6888B /* AppleMusicAPI.swift in Sources */,
+				8B5807782483991A00C6888B /* SwiftyJSON.swift in Sources */,
 				8B3DC4B92422A2810067355E /* AppDelegate.swift in Sources */,
 				8B3DC4BB2422A2810067355E /* SceneDelegate.swift in Sources */,
 				8B3DC4BD2422A2810067355E /* ContentView.swift in Sources */,
@@ -292,6 +314,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MusicPlayer/MusicPlayer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"MusicPlayer/Preview Content\"";
 				DEVELOPMENT_TEAM = XJYMG76226;
@@ -303,6 +326,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.appcoda.MusicPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -312,6 +336,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MusicPlayer/MusicPlayer.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"MusicPlayer/Preview Content\"";
 				DEVELOPMENT_TEAM = XJYMG76226;
@@ -323,6 +348,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.appcoda.MusicPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -350,6 +376,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8B0ED901248D968B0055C5EB /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8B0ED902248D968B0055C5EB /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B0ED901248D968B0055C5EB /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8B3DC4AD2422A2810067355E /* Project object */;
 }

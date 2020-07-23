@@ -7,39 +7,55 @@
 //
 
 import SwiftUI
+import StoreKit
+import MediaPlayer
+import SDWebImageSwiftUI
 
 struct SearchView: View {
     @State private var searchText = ""
-    let songs = ["Blinding Lights", "That Way", "This Is Me"]
+    @State private var searchResults = [Song]()
+    @Binding var musicPlayer: MPMusicPlayerController
+    @Binding var currentSong: Song
     
     var body: some View {
         VStack {
             TextField("Search Songs", text: $searchText, onCommit: {
-                print(self.searchText)
+                UIApplication.shared.resignFirstResponder()
+                if self.searchText.isEmpty {
+                    self.searchResults = []
+                } else {
+                    SKCloudServiceController.requestAuthorization { (status) in
+                        if status == .authorized {
+                            self.searchResults = AppleMusicAPI().searchAppleMusic(self.searchText)
+                        }
+                    }
+                }
             })
             .textFieldStyle(RoundedBorderTextFieldStyle())
             .padding(.horizontal, 16)
             .accentColor(.pink)
             
             List {
-                ForEach(songs, id:\.self) { songTitle in
+                ForEach(searchResults, id:\.id) { song in
                     HStack {
-                        Image(systemName: "rectangle.stack.fill")
+                        WebImage(url: URL(string: song.artworkURL.replacingOccurrences(of: "{w}", with: "80").replacingOccurrences(of: "{h}", with: "80")))
                             .resizable()
                             .frame(width: 40, height: 40)
                             .cornerRadius(5)
                             .shadow(radius: 2)
 
                         VStack(alignment: .leading) {
-                            Text(songTitle)
+                            Text(song.name)
                                 .font(.headline)
-                            Text("Artist Title")
+                            Text(song.artistName)
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                         }
                         Spacer()
                         Button(action: {
-                            print("Playing \(songTitle)")
+                            self.currentSong = song
+                            self.musicPlayer.setQueue(with: [song.id])
+                            self.musicPlayer.play()
                         }) {
                             Image(systemName: "play.fill")
                                 .foregroundColor(.pink)
@@ -49,11 +65,5 @@ struct SearchView: View {
             }
             .accentColor(.pink)
         }
-    }
-}
-
-struct SearchView_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchView()
     }
 }

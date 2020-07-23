@@ -7,27 +7,38 @@
 //
 
 import SwiftUI
+import MediaPlayer
+import SDWebImageSwiftUI
 
 struct PlayerView: View {
+    @Binding var musicPlayer: MPMusicPlayerController
+    @State private var isPlaying = false
+    @Binding var currentSong: Song
+
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 24) {
-                Image(systemName: "a.square")
-                .resizable()
-                .frame(width: geometry.size.width - 24, height: geometry.size.width - 24)
-                .cornerRadius(20)
-                .shadow(radius: 10)
+                WebImage(url: URL(string: self.currentSong.artworkURL.replacingOccurrences(of: "{w}", with: "\(Int(geometry.size.width - 24) * 2)").replacingOccurrences(of: "{h}", with: "\(Int(geometry.size.width - 24) * 2)")))
+                    .resizable()
+                    .frame(width: geometry.size.width - 24, height: geometry.size.width - 24)
+                    .cornerRadius(20)
+                    .shadow(radius: 10)
                 
                 VStack(spacing: 8) {
-                    Text("Song Title")
+                    Text(self.musicPlayer.nowPlayingItem?.title ?? "Not Playing")
                         .font(Font.system(.title).bold())
-                    Text("Artist Name")
+                        .multilineTextAlignment(.center)
+                    Text(self.musicPlayer.nowPlayingItem?.artist ?? "")
                         .font(.system(.headline))
                 }
                 
                 HStack(spacing: 40) {
                     Button(action: {
-                        print("Rewind")
+                        if self.musicPlayer.currentPlaybackTime < 5 {
+                            self.musicPlayer.skipToPreviousItem()
+                        } else {
+                            self.musicPlayer.skipToBeginning()
+                        }
                     }) {
                         ZStack {
                             Circle()
@@ -41,21 +52,27 @@ struct PlayerView: View {
                     }
 
                     Button(action: {
-                        print("Pause")
+                        if self.musicPlayer.playbackState == .paused || self.musicPlayer.playbackState == .stopped {
+                            self.musicPlayer.play()
+                            self.isPlaying = true
+                        } else {
+                            self.musicPlayer.pause()
+                            self.isPlaying = false
+                        }
                     }) {
                         ZStack {
                             Circle()
                                 .frame(width: 80, height: 80)
                                 .accentColor(.pink)
                                 .shadow(radius: 10)
-                            Image(systemName: "pause.fill")
+                            Image(systemName: self.isPlaying ? "pause.fill" : "play.fill")
                                 .foregroundColor(.white)
                                 .font(.system(.title))
                         }
                     }
 
                     Button(action: {
-                        print("Skip")
+                        self.musicPlayer.skipToNextItem()
                     }) {
                         ZStack {
                             Circle()
@@ -71,11 +88,12 @@ struct PlayerView: View {
 
             }
         }
-    }
-}
-
-struct PlayerView_Previews: PreviewProvider {
-    static var previews: some View {
-        PlayerView()
+        .onAppear() {
+            if self.musicPlayer.playbackState == .playing {
+                self.isPlaying = true
+            } else {
+                self.isPlaying = false
+            }
+        }
     }
 }

@@ -7,13 +7,17 @@
 //
 
 import SwiftUI
+import StoreKit
+import MediaPlayer
 
 struct ContentView: View {
     @State private var selection = 0
+    @State private var musicPlayer = MPMusicPlayerController.applicationMusicPlayer
+    @State private var currentSong = Song(id: "", name: "", artistName: "", artworkURL: "")
     
     var body: some View {
         TabView(selection: $selection) {
-            PlayerView()
+            PlayerView(musicPlayer: self.$musicPlayer, currentSong: self.$currentSong)
             .tag(0)
                 .tabItem {
                     VStack {
@@ -21,7 +25,7 @@ struct ContentView: View {
                         Text("Player")
                     }
                 }
-            SearchView()
+            SearchView(musicPlayer: self.$musicPlayer, currentSong: self.$currentSong)
             .tag(1)
                 .tabItem {
                     VStack {
@@ -37,5 +41,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .colorScheme(.dark)
+            .previewDevice(.init(rawValue: "iPhone 11"))
     }
 }
