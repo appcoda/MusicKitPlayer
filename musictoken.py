@@ -3,10 +3,8 @@ import jwt
 
 
 secret = """-----BEGIN PRIVATE KEY-----
-PASTE
-YOUR
-KEY
-ER
+
+
 -----END PRIVATE KEY-----"""
 keyId = "ABCDEFGHIJ"
 teamId = "0123456789"
